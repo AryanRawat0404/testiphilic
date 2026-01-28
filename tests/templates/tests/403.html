@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Forbidden</title>
+
+    <style>
+        body {
+            background: #ffedd5; /* soft orange */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1f2937;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 80px;
+            color: #f97316; /* bold orange */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0.85;
+        }
+
+        .btn {
+            background: #f97316;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ea580c;
+        }
+
+        /* Cute emoji animation */
+        .emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: shake 1s infinite;
+            display: inline-block;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            50% { transform: rotate(-15deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 60px; }
+            h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="emoji">🚫🤓</div>
+    <h1>403</h1>
+    <h2>Oops! Access Denied</h2>
+    <p>Naughty Hora K...🕵️‍♂️</p>
+    <p>Teachers only: please go back to your dashboard.</p>
+    <a href="{% url 'student_dashboard' %}" class="btn">Back to Student Dashboard</a>
+</div>
+
+</body>
+</html>

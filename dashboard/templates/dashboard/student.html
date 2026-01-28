@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard | Testiphilic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            color: #1f2937;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        header h1 {
+            color: #16a34a;
+            font-size: 26px;
+        }
+
+        .user-info {
+            font-size: 15px;
+            color: #374151;
+        }
+
+        .dashboard-container {
+            padding: 50px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .welcome-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .welcome-card h2 {
+            color: #16a34a;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .welcome-card p {
+            font-size: 16px;
+            color: #4b5563;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background: #16a34a;
+            color: #ffffff;
+        }
+
+        .primary-btn:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .secondary-btn:hover {
+            background: #bbf7d0;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            .dashboard-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Student Dashboard</h1>
+    <div class="user-info">
+        Logged in as <strong>{{ request.user.username }}</strong>
+    </div>
+</header>
+
+<div class="dashboard-container">
+    <div class="welcome-card">
+        <h2>Welcome 👋</h2>
+        <p>
+            View available tests, attempt exams, and check your results —
+            all from your dashboard.
+        </p>
+
+        <div class="action-buttons">
+            <a href="{% url 'student_tests' %}" class="primary-btn">Take Test</a>
+            <a href="{% url 'student_results' %}" class="secondary-btn">Results</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 Testiphilic • Student Panel
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tests | Testiphilic</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4f46e5, #6366f1); /* light purple background */
+            color: #1f2937;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            color: #ebeaf1;
+            font-size: 28px;
+        }
+
+        .tests-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #eeedf2;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .test-list {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            max-height: 60vh;
+            overflow-y: auto;
+            margin-bottom: 30px;
+        }
+
+        .test-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 0;
+        }
+
+        .test-item:last-child {
+            border-bottom: none;
+        }
+
+        .test-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #4f46e5;
+            flex: 1 1 200px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            padding: 3px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 15px;
+            color: #fff;
+        }
+
+        .status-draft { background: #6b7280; }      /* gray */
+        .status-published { background: #10b981; }  /* green */
+        .status-unpublished { background: #f59e0b; }/* orange */
+        .status-ended { background: #6b7280; }      /* gray for ended */
+
+        .btn {
+            padding: 8px 16px;
+            margin-left: 8px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .edit-btn { background: #6366f1; }
+        .edit-btn:hover { background: #4f46e5; }
+
+        .publish-btn { background: #10b981; }
+        .publish-btn:hover { background: #059669; }
+
+        .unpublish-btn { background: #f59e0b; }
+        .unpublish-btn:hover { background: #d97706; }
+
+        .delete-btn { background: #ef4444; }
+        .delete-btn:hover { background: #b91c1c; }
+
+        .ended-test {
+            background: #f3f4f6; /* light gray */
+            opacity: 0.85;
+        }
+
+        .empty-text {
+            font-size: 15px;
+            color: #6b7280;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .test-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn {
+                margin: 5px 5px 0 0;
+            }
+
+            .test-title {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Tests</h1>
+</header>
+
+<div class="tests-container">
+
+    <!-- Active Tests -->
+    <h2>Active Tests</h2>
+    <div class="test-list">
+        {% for test in tests %}
+            {% if test.end_time > current_time %}
+            <div class="test-item">
+                <div class="test-title">
+                    {{ test.title }}
+                    {% if not test.is_visible %}
+                        <span class="status-badge status-draft">Draft</span>
+                    {% else %}
+                        <span class="status-badge status-published">Published</span>
+                    {% endif %}
+                </div>
+                <div class="test-actions">
+                    <a href="{% url 'add_questions' test.id %}" class="btn edit-btn">Edit</a>
+                    {% if not test.is_visible %}
+                        <a href="{% url 'publish_test' test.id %}" class="btn publish-btn">Publish</a>
+                    {% else %}
+                        <a href="{% url 'unpublish_test' test.id %}" class="btn unpublish-btn">Unpublish</a>
+                    {% endif %}
+                    <a href="{% url 'delete_test' test.id %}" class="btn delete-btn">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+        {% empty %}
+            <p class = 'empty-text'>No active tests</p>
+        {% endfor %}
+    </div>
+
+    <!-- Ended Tests -->
+    <h2>Ended Tests</h2>
+    <div class="test-list">
+        {% for test in tests %}
+            {% if test.end_time <= current_time %}
+            <div class="test-item ended-test">
+                <div class="test-title">
+                    {{ test.title }}
+                    <span class="status-badge status-ended">Ended</span>
+                </div>
+                <div class="test-actions">
+                    <a href="{% url 'add_questions' test.id %}" class="btn edit-btn">Edit</a>
+                    <a href="{% url 'delete_test' test.id %}" class="btn delete-btn">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+        {% empty %}
+            <p>No ended tests</p>
+        {% endfor %}
+    </div>
+
+</div>
+<footer>
+    © 2026 Testiphilic • Teacher Panel
+</footer>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Tests | Testiphilic</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            color: #1f2937;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        header h1 {
+            color: #16a34a;
+            font-size: 26px;
+        }
+
+        .container {
+            padding: 40px;
+            display: flex;
+            flex-direction: column; /* stack vertically */
+            gap: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #16a34a;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .test-item {
+            background: #f0fdf4;
+            border: 1px solid #dcfce7;
+            border-radius: 12px;
+            padding: 15px 18px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .test-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .test-info {
+            font-size: 15px;
+        }
+
+        .test-info strong {
+            color: #166534;
+        }
+
+        .start-btn {
+            padding: 8px 18px;
+            background: #16a34a;
+            color: #ffffff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .start-btn:hover {
+            background: #15803d;
+        }
+
+        .upcoming-item {
+            background: #ecfdf5;
+            border-left: 5px solid #22c55e;
+            padding: 15px 18px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .upcoming-item:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
+
+        .empty-text {
+            font-size: 15px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Student Tests</h1>
+</header>
+
+<div class="container">
+
+    <!-- Available Tests (Top) -->
+    <div class="card">
+        <h2>Available Tests</h2>
+
+        {% for test in available_tests %}
+            <div class="test-item">
+                <div class="test-info">
+                    <strong>{{ test.title }}</strong><br>
+                    {{ test.subject }}
+                </div>
+                <a href="{% url 'attempt_test' test.id %}" class="start-btn">
+                    Start
+                </a>
+            </div>
+        {% empty %}
+            <p class="empty-text">No active tests</p>
+        {% endfor %}
+    </div>
+
+    <!-- Upcoming Tests (Below) -->
+    <div class="card">
+        <h2>Upcoming Tests</h2>
+
+        {% for test in upcoming_tests %}
+            <div class="upcoming-item">
+                <strong>{{ test.title }}</strong><br>
+                Starts at {{ test.start_time }}
+            </div>
+        {% empty %}
+            <p class="empty-text">No upcoming tests</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Testiphilic • Student-Test-Panel
+</footer>
+
+</body>
+</html>

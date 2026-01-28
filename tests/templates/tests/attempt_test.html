@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ test.title }} | Testiphilic</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa; /* soft light background */
+            color: #1f2937; /* dark text for readability */
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: #2563eb; /* blue accent */
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff; /* card background */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 4px solid #2563eb; /* accent for each question */
+            border-radius: 6px;
+            background: #f9fafb;
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border: 1px solid #d1d5db;
+            transition: 0.3s;
+            background: #ffffff;
+        }
+
+        input[type="radio"] {
+            margin-right: 12px;
+        }
+
+        label:hover {
+            background: #e0f2fe; /* light blue hover */
+            border-color: #2563eb;
+        }
+
+        input[type="radio"]:checked + span {
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2563eb;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 768px) {
+            form {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .question p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>{{ test.title }}</h1>
+</header>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {% for question in test.questions.all %}
+    <div class="question">
+        <p>Q{{ forloop.counter }}. {{ question.question_text }}</p>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="A">
+            <span>{{ question.option_a }}</span>
+        </label>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="B">
+            <span>{{ question.option_b }}</span>
+        </label>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="C">
+            <span>{{ question.option_c }}</span>
+        </label>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="D">
+            <span>{{ question.option_d }}</span>
+        </label>
+    </div>
+    {% endfor %}
+
+    <button type="submit">Submit Test</button>
+</form>
+
+</body>
+</html>

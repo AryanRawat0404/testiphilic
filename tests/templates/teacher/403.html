@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Forbidden</title>
+
+    <style>
+        body {
+            background: #eef2ff; /* light indigo background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1f2937;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 70px;
+            color: #4f46e5; /* indigo */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: #6366f1;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #4f46e5;
+        }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 50px; }
+            h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>403</h1>
+    <h2>Access Restricted</h2>
+    <p>
+        This page is for students only. Teachers are not allowed to access student dashboards or exams.
+    </p>
+    <p>
+        Please return to your teacher dashboard.
+    </p>
+    <a href="{% url 'teacher_dashboard' %}" class="btn">Back to Teacher Dashboard</a>
+</div>
+
+</body>
+</html>

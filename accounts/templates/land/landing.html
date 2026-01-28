@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Test Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .login-btn {
+            padding: 10px 22px;
+            background: #fff;
+            color: #4f46e5;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #e0e7ff;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 80px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 650px;
+            opacity: 0.9;
+            margin-bottom: 35px;
+        }
+
+        .cta-btn {
+            padding: 14px 35px;
+            font-size: 18px;
+            background: #22c55e;
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #16a34a;
+        }
+
+        .features {
+            background: #fff;
+            color: #1f2937;
+            padding: 80px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            color: #4f46e5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #111827;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Testiphilic</h1>
+    <!-- Login Button (Add URL yourself later) -->
+    <button class="login-btn"> <a href="{% url 'login' %}">Login</a> </button>
+</header>
+
+<section class="hero">
+    <h2>Create, Publish & Evaluate Tests — All Online</h2>
+    <p>
+        A smart online test platform where teachers can create and publish tests,
+        and students can attempt exams and instantly view auto-evaluated results.
+    </p>
+    <button class="cta-btn"><a href="{% url 'login' %}">Get Started</a></button>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h3>For Teachers</h3>
+        <p>
+            Create tests easily, schedule upcoming exams,
+            and get instant auto-evaluated results without manual checking.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>For Students</h3>
+        <p>
+            View upcoming tests, attempt exams online,
+            and instantly check results.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Auto Evaluation</h3>
+        <p>
+            Save time with automatic grading and real-time result generation
+            powered by a reliable backend.
+        </p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Testiphilic • Built with Django • By ME(Aryan Rawat)
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Results | Testiphilic</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            color: #1f2937;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #16a34a;
+            font-size: 28px;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .results-table th, .results-table td {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        .results-table th {
+            background: #16a34a;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .results-table tr:nth-child(even) {
+            background: #f0fdf4;
+        }
+
+        .results-table tr:nth-child(odd) {
+            background: #ecfdf5;
+        }
+
+        .empty-text {
+            text-align: center;
+            padding: 20px;
+            color: #065f46;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .results-table th, .results-table td {
+                padding: 12px 10px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Results</h1>
+</header>
+
+<table class="results-table">
+    <tr>
+        <th>Test</th>
+        <th>Subject</th>
+        <th>Score</th>
+    </tr>
+
+    {% for s in submissions %}
+    <tr>
+        <td>{{ s.test.title }}</td>
+        <td>{{ s.test.subject }}</td>
+        <td>{{ s.score }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3" class="empty-text">No results yet</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<footer>
+    © 2026 Testiphilic • Student-Result-Panel
+</footer>
+
+</body>
+</html>
