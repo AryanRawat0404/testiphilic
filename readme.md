@@ -17,7 +17,7 @@ A Django-based web application for managing online tests for schools.
 
 ## Setup
 ```bash
-git clone https://github.com/your-username/project-name.git
+git clone https://github.com/AryanRawat0404/testiphilic.git
 cd Testiphilic
 python -m venv venv
 venv\Scripts\activate
