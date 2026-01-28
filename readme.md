@@ -13,7 +13,7 @@ A Django-based web application for managing online tests for schools.
 ## Tech Stack
 - Django
 - SQLite (development)
-- HTML / CSS / Bootstrap
+- HTML / CSS
 
 ## Setup
 ```bash
